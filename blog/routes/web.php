@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,57 +22,11 @@ Route::get('/', function () {
     return view('posts');
 });
 
-Route::get('posts/{post}' , function ($post) {
-    $path = __DIR__ . "/../resources/posts/{$post}.html";
 
-    if (!file_exists($path)) {
-        ddd('file does not exist');
-    }
-
-    $post =cache()->remember("posts.{$post}", 5, function() use ($path) {
-        var_dump('file_get_contents');//this is ehre to show when we are in the cache and when we are not
-        return file_get_contents($path);
-
-        });
-    return view('post', [
-        'post' => $post
+Route::get('posts/{slug}' , function ($slug) {
+    //I'm trying to find a post by it's tail address (slug) and pass it to a view called "post"
+    return view('post',[
+        'post' => Post::find($slug) //no constructor here/ you call the class without building an isntance? can you do that?
     ]);
+
 })->where('post', '[A-z_/-]+');
-
-
-/*
- //the final thing that should work
-
-Route::get(
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-        if(!file_exists($path)){
-            ddd('file does not exist');
-        }
-
-        $post = file_get_contents($path);
-
-        return view('post', [
-            'post' => $post
-        ]);
-
-);
- */
-
-
-/*
-  //the last sample before it no longer worked
-Route::get(
-    'post', function(){
-        return view(
-            'post', [
-                'post' => file_get_contents(
-                    __DIR__ . '/../resources/posts/my-first-post.html'
-                )
-            ]
-        );
-    }
-
-);
-*/
-
-
