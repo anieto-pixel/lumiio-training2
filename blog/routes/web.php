@@ -24,17 +24,19 @@ Route::get('/', function () {
 Route::get('posts/{post}' , function ($post) {
     $path = __DIR__ . "/../resources/posts/{$post}.html";
 
-        if(!file_exists($path)){
-             ddd('file does not exist');
-         }
-
-        $post = file_get_contents($path);
-
-        return view('post', [
-            'post' => $post
-        ]);
+    if (!file_exists($path)) {
+        ddd('file does not exist');
     }
-);
+
+    $post =cache()->remember("posts.{$post}", 5, function() use ($path) {
+        var_dump('file_get_contents');//this is ehre to show when we are in the cache and when we are not
+        return file_get_contents($path);
+
+        });
+    return view('post', [
+        'post' => $post
+    ]);
+})->where('post', '[A-z_/-]+');
 
 
 /*
