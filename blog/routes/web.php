@@ -22,5 +22,10 @@ Route::get('/', function () {
 });
 
 Route :: get('post', function(){
-    return view ('post');
+        $post => file_get_contents(__DIR__ . '/../resources/posts/my-first-post.html');
+        return view ('post',[
+            'post'=>$post
+    ]); /*as a second set of value arguments, this method accepts
+an array of key-value pairs, in the variable "post*, that in this case we'll use to ensure that the text in the
+posts displayed aren't always the same one*/
 });
