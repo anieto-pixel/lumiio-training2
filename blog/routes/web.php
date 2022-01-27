@@ -19,14 +19,12 @@ Route::get('/', function () {
 });*/
 
 Route::get('/', function () {
-    return view('posts');
+    return view('posts', ['posts'=>Post::all()]);
 });
 
 
 Route::get('posts/{slug}' , function ($slug) {
     //I'm trying to find a post by it's tail address (slug) and pass it to a view called "post"
-    return view('post',[
-        'post' => Post::find($slug) //no constructor here/ you call the class without building an isntance? can you do that?
-    ]);
+    return view('post', ['post' => Post::find($slug)]);
 
 })->where('post', '[A-z_/-]+');

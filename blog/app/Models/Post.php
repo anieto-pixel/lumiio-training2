@@ -1,22 +1,25 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Support\Facades\File;
+use mysql_xdevapi\Exception;
 
-class Post
-{
+class Post{
+    public static function all(){
+        $files=File::files(resource_path("post/"));
+        return array_map(function ($file) { return $file-- > getComments();}, $files);//this applies a function (get the comments in the file(what is comments in this context)
+        //Question. Does File define itself for Array_maps?
+    }
+
     public static function find($slug){
-
-        $path = __DIR__ . "/../resources/posts/{$slug}.html";
-
-        if (!file_exists($path = resource_path("post/{$slug}.html"))) {//I don't know what he's doign ehre!
-            //return redirect('/');//we took this out because the job of this method isn't to redirect thigns, is just to find posts
+        $path = resource_path('"post/{$slug}.html');
+        if(!file_exists($path)){
             throw new ModelNotFoundException();
         }
-
-        return cache()->remember("posts.{$slug}", 5, function() use ($path) {
-            var_dump('file_get_contents');
+        return cache()->remember('"posts.{$slug}', 1200, function () use ($path) {//what's the difference with function($path)
+            return file_get_contents($path);
         });
-
     }
+
 
 }
