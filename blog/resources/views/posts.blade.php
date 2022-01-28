@@ -1,11 +1,7 @@
-<!doctype html>
+@extends ('layout');
 
-    <title>My Blog</title>
-
-    <link rel="stylesheet" href="/app.css">
-
-    <body>
-        <? foreach($posts as $post) : ?>
+    @section('content')
+        @foreach($posts as $post)
             <article>
                 <h1>
                     <a href="/posts/<?= $post->slug; ?>">
@@ -17,5 +13,5 @@
                     <?= $post->excerpt; ?>
                 </div>
             </article>
-        <?php endofeach; ?>
-    </body>
+        @endforeach
+    @endsection

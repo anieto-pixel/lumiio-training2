@@ -1,18 +1,15 @@
-    <!doctype html>
+    @extends('layour')
 
-    <title>My Blog</title>
+    @section('content')
 
-    <link rel="stylesheet" href="/app.css">
+        <article>
+            <h1>
+                {{ $post->title }}
+            </h1>
 
+            <div>
+                {!! $post->body !!}
+            </div>
+        </article>
 
-    <body>
-
-    <article>
-        <?= $post; ?>
-    </article>
-
-    <a href="/">
-        Go Back
-    </a>
-
-    </body>
+    @endsection
