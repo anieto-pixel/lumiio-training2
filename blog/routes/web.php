@@ -10,15 +10,21 @@ use app\Models\Post;
 */
 
     Route::get('/', function () {
-        $files = File::files(resource_path("posts"));
-
-
-            $posts
-
-
-
+        $document = yamlFrontMatter::parseFile(resource_path('posts/my-fourth-post.html'));
+        ddd($document);
     }
-
+/*
+    Route::get('/', function () {
+        $files = File::files(resource_path("posts"));
+        $posts[] = new Post(
+            $document -> title.
+            $document->excerpt.
+            $document-> date.
+            $document->body.
+            $document->slug
+        );
+    }
+*/
 
 
 
