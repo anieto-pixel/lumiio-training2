@@ -8,6 +8,8 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
+     * Calls the static method create within the Schema class, when it receives the
+     * the string users, it executes the function
      *
      * @return void
      */
@@ -15,13 +17,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
+            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            //$table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp();
         });
     }
 
