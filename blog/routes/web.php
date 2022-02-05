@@ -18,7 +18,7 @@ use App\Models\Post;
         return view('posts',['posts'=> Post::all()]);
     });
 
-    Route::get('posts/{id}', function($id){
-        return view('posts', ['posts'=>Post::findOrFail($id)]);
+    Route::get('posts/{id}', function(Post $id){
+        return view('post', ['post' => $id]);
     });
 
