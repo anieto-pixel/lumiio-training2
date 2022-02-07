@@ -5,8 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class post extends Model
+class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','excerpt','body'];
+    protected $fillable = ['title','excerpt','body', 'slug', 'category_id'];
+
+    public function getRouteKey()
+    {
+            return 'slug';
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

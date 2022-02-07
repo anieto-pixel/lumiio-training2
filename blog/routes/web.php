@@ -15,10 +15,14 @@ use App\Models\Post;
 */
 
     Route::get('/', function () {
-        return view('posts',['posts'=> Post::all()]);
+        return view('posts',['posts'=> Post::with('category')->get()]);
     });
 
     Route::get('posts/{id}', function(Post $id){
         return view('post', ['post' => $id]);
+    });
+
+    Route::get('categories/{category:slug}', function(Category $category) {
+        return view('posts', ['posts' => $category->posts]);
     });
 

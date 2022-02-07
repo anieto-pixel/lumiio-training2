@@ -1,0 +1,7 @@
+#forum
+1- thread
+2-reply
+3-user
+
+A.THREAD IS CREATER BY USER
+ba A REPLY BELONGS TO A TRHEAD AND to a user

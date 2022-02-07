@@ -1,15 +1,20 @@
 
 
 <x-layout>
-    @foreach ($posts as $post)
+    @foreach ($posts as $element)
         <article>
             <h1>
-                <a href="posts/{{ $post -> id }}">
-                    {!! $post->title !!}
+                <a href="posts/{{ $element -> id }}">
+                    {!! $element->title !!}
                 </a>
             </h1>
+            <p>
+                <a href="/categories/{{ $post->category->slug }}">
+                    {{ $post->category->name }}
+                </a>
+            </p>
             <div>
-                {{ $post->excerpt }}
+                {{ $element->excerpt }}
             </div>
 
         </article>
