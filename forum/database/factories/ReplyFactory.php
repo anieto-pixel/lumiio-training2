@@ -1,9 +1,9 @@
 <?php
+
 namespace Database\Factories;
-//use App\Models\Channel;
-use App\Models\User;
-use Illuminate\Broadcasting\Channel; //<----this is the one I just added
+
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 class ReplyFactory extends Factory
 {
@@ -14,10 +14,9 @@ class ReplyFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'thread_id' => Thread::factory(),
-            'user_id' => User::factory(),
+        return [ 'user_id' => User::factory(),
             'body' => $this->faker->paragraph()
+            //
         ];
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRepliesTable extends Migration
+class Replies extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateRepliesTable extends Migration
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('thread_id');
-            $table->integer('used_id');
+            $table->integer('user_id');
             $table->text('body');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('replies');
+        //
     }
 }

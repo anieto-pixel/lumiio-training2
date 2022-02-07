@@ -1,8 +1,9 @@
 <?php
+
 namespace Database\Factories;
-//use App\Models\Channel;
+
 use App\Models\User;
-use Illuminate\Broadcasting\Channel; //<----this is the one I just added
+use App\Models\Channel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThreadFactory extends Factory
@@ -16,7 +17,7 @@ class ThreadFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'channel_id' =>mt_rand(),
+            //'channel_id' =>mt_rand(),
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph()
         ];
